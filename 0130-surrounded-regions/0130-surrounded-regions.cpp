@@ -1,28 +1,3 @@
-/*class Solution {
-public:
-  void ans(vector<vector<char>>& board ,int i, int j){
-       if(i==0 || j==0 || i== board.size()-1 || j== board[0].size()-1)return;
-       if(board[i])        
-               
-                if(board[i][j]=='O'){
-                    board[i][j]='X';
-                    ans(board , i+1,j);
-                    ans(board , i-1,j);
-                    ans(board , i ,j+1);
-                    ans(board , i, j-1);
-                }
-  }
-
-
-
-    void solve(vector<vector<char>>& board) {
-        for(int i=0;i<board.size();i++){
-            for(int j=0;j<board[0].size();j++){
-              ans(board ,i ,j);
-            }
-        }
-    }
-};*/
 class Solution {
 public:
     int row,col; // Variables to store the number of rows and columns in the matrix.
