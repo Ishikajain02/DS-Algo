@@ -57,8 +57,9 @@ public:
         node* n= new node(key,value);
         if(mp.find(key)!=mp.end()){
             node* d = mp[key];
-             mp.erase(key);
+            
             deletenode(d);
+             mp.erase(key);
            // addnode(n);
            
             //mp
