@@ -8,9 +8,15 @@ int fn(vector<int>&dp , int i , int n,vector<int>&cost){
     return dp[i]= min(fn(dp,i-1,n,cost),fn(dp , i-2,n ,cost) ) + cost[i];
 }
     int minCostClimbingStairs(vector<int>& cost) {
-        int n = cost.size();
-        vector<int>dp(n+1,-1);
-        int ans = min(fn(dp, n-1 ,n,cost),fn(dp, n-2 ,n,cost));
-        return ans;
+       
+        //using tabulation
+        int prev = 0;
+        int prev2 = 0;
+        for(int i=2;i<=cost.size();i++){
+            int ans = min(prev + cost[i-1] , prev2 +cost[i-2]);
+            prev2 = prev;
+            prev = ans;
+        }
+        return prev;
     }
 };
