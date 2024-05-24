@@ -17,6 +17,8 @@ int height(TreeNode*root,int h){
     int righth=height(root->right,h+1);
     return max(lefth,righth);
 }
+/*
+//BFS SOLUTION
 void sumi(TreeNode*root,int &sum,int h){
     queue<TreeNode*>q;
     if(!root)return;
@@ -34,10 +36,18 @@ void sumi(TreeNode*root,int &sum,int h){
         }
     }
 }
+*/
+//DFS SOLUTION
+void solve(TreeNode*root,int start,int& h,int &sum){
+    if(!root)return;
+    if(start==h)sum+=root->val;
+    solve(root->left,start+1,h,sum);
+    solve(root->right,start+1,h,sum); 
+}
     int deepestLeavesSum(TreeNode* root) {
         int fin=height(root,0);
         int sum=0;
-        sumi(root,sum,fin);
+        solve(root,1,fin,sum);
         return sum;
     }
 };
