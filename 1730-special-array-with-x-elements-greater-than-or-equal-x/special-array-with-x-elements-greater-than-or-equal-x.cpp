@@ -17,7 +17,14 @@ public:
         }
         return -1;
     }*/
-    int search(vector<int>nums,int index){
+
+    //BINARY SEARCH APPROACH
+    //O(NLOGN);
+    //S(C)-O(1)
+
+
+
+/*    int search(vector<int>nums,int index){
         int start=0;
         int end=nums.size()-1;
         int val=-1;
@@ -40,5 +47,18 @@ public:
         if(i==(nums.size()-val))return i;
        }
        return -1;
+    }*/
+    int specialArray(vector<int>nums){
+        vector<int>freq(nums.size()+1);
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++){
+            freq[min(n,nums[i])]++;
+        }
+        int suffix=0;
+        for(int i=n;i>=1;i--){
+            suffix+=freq[i];
+            if(suffix==i)return i;
+        }
+        return -1;
     }
 };
