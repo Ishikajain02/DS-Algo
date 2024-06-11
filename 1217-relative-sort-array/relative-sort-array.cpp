@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        //arr1 arr2
+        vector<int>ans;
+        int j=0;
+        int n1=arr1.size();
+        int n2=arr2.size();
+        while(j<n2){
+            for(int i=0;i<n1;i++){
+                if(arr1[i]==arr2[j]){
+                    ans.push_back(arr1[i]);
+                    arr1[i]=-1;
+                }
+            }
+            j++;
+    }
+    int size=ans.size();
+    for(int i=0;i<n1;i++){
+        if(arr1[i]>-1){
+            ans.push_back(arr1[i]);
+        }
+    }
+    sort(ans.begin()+size,ans.end());
+    return ans;
+
+    }
+};
