@@ -1,7 +1,6 @@
 class Solution {
 public:
 void tn(vector<int>&candidates,int target,vector<int>vc,set<vector<int>>&s,int ind,int sum){
- 
     if(sum==target){
         s.insert(vc);
         return;
