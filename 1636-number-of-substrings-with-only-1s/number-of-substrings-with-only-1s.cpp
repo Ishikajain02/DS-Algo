@@ -1,22 +1,18 @@
 class Solution {
 public:
     int numSub(string s) {
+        //using sliding window logic;
+        int left=0;
         long long ans=0;
-        long long cnt1=0;
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='1'){
-                cnt1++;
+        for(int right=0;right<s.size();right++){
+            if(s[right]=='0'){
+                left=right+1;
             }
             else{
-                ans+=(((cnt1*(cnt1+1))/2));
-                cnt1=0;
+                ans+=(right-left+1);
             }
         }
-        if(cnt1!=0){
-           ans+=(((cnt1*(cnt1+1))/2));  
-        }
         int mod=1e9+7;
-      
-       return ans%mod;
+        return ans%mod;
     }
 };
