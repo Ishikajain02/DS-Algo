@@ -1,47 +1,25 @@
 class Solution {
 public:
-    // Function to find the vertex with the maximum weight value
-    int findmv(const vector<double>& weight, const vector<bool>& visited) {
-        int mv = -1;
-        for (int i = 0; i < weight.size(); i++) {
-            if (!visited[i] && (mv == -1 || weight[i] > weight[mv])) {
-                mv = i;
-            }
-        }
-        return mv;
-    }
-
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {
-        // Maximum path probabilities
-        vector<bool> visited(n, false);
-        vector<double> weight(n, 0.0);
-        vector<vector<pair<int, double>>> adj(n); // adjacency list
-
-        // Build adjacency list
-        for (int i = 0; i < edges.size(); i++) {
-            adj[edges[i][0]].push_back({edges[i][1], succProb[i]});
-            adj[edges[i][1]].push_back({edges[i][0], succProb[i]});
+        vector<vector<pair<double,double>>>adj(n);
+        for(int i=0;i<edges.size();i++){
+            adj[edges[i][0]].push_back({edges[i][1],succProb[i]});
+            adj[edges[i][1]].push_back({edges[i][0],succProb[i]});
         }
+        vector<double>dist(n,0);
         priority_queue<pair<double,int>>pq;
-
-        weight[start_node] = 1.0;
-        pq.push({weight[start_node],start_node});
-       // for (int i = 0; i < n; i++) {
-          while(!pq.empty()){
-            int mv=pq.top().second;
-            double dis=pq.top().first;
-            visited[mv] = true;
+        pq.push({1.0,start_node});
+        while(!pq.empty()){
+            int ele=pq.top().second;
+            double d=pq.top().first;
             pq.pop();
-            for (const auto& edge : adj[mv]) {
-                int neighbor = edge.first;
-                double prob = edge.second;
-                if (!visited[neighbor] && weight[neighbor] < weight[mv] * prob) {
-                    weight[neighbor] = weight[mv] * prob;
-                    pq.push({weight[neighbor],neighbor});
+            for(int i=0;i<adj[ele].size();i++){
+                if(dist[adj[ele][i].first]<adj[ele][i].second*d){
+                    dist[adj[ele][i].first]=adj[ele][i].second*d;
+                    pq.push({adj[ele][i].second*d,adj[ele][i].first});
                 }
             }
         }
-
-        return weight[end_node];
+        return dist[end_node];
     }
 };
