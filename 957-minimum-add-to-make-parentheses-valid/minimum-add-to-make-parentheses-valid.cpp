@@ -1,19 +1,16 @@
 class Solution {
 public:
     int minAddToMakeValid(string s) {
-        //number of closing brackets to be added
-        int total=0;
+        int cnt=0;
         int ans=0;
         for(int i=0;i<s.size();i++){
-            if(s[i]=='(')total++;
-            else total--;
-            if(0>total){
+            if(s[i]=='(')cnt++;
+            else cnt--;
+            if(cnt<0){
                 ans++;
-                total++;
+                cnt++;
             }
-
         }
-        ans+=total;
-        return ans;
+        return ans+=cnt;
     }
 };
