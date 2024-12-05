@@ -6,17 +6,16 @@ public:
         while(i<n || j<n){
             while(i<n && start[i]=='_')i++;
             while(j<n && target[j]=='_')j++;
-            if(i==n ||j==n)break;
-            if(start[i]==target[j]){
-                if(start[i]=='L' && i<j )return false;
-                else if (start[i]=='R' && i>j)return false;
-              
+            if(i==n || j==n)break;
+            if(start[i]==target[j] ){
+                if(start[i]=='L' && i<j)return false;
+                if(start[i]=='R' && i>j)return false;
             }
-              else return false;
-                i++;
-                j++;
+            else return false;
+            i++;
+            j++;
         }
-        if(i==n &&j==n)return true;
+        if(i==n && j==n)return true;
         return false;
     }
 };
