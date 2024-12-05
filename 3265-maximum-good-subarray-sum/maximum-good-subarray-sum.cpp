@@ -7,41 +7,7 @@ public:
             v[i] = (v[i - 1] + nums[i]);
         }
         vector<long long>prefix=v;
-        //   [1,3,6,10,14,19,25]
-        //[1,6]
-       /* map<int, vector<int>> mp;
-
-        //[1->0
-        // 5->1]
-        // long long currsum=LONG_MIN;
-        long long ans = LONG_MIN; // Use long long for large sums
-        for (int i = 0; i < nums.size(); i++) {
-            if (mp.find(nums[i] + k) != mp.end()) {
-                for (auto it : mp[nums[i] + k]) {
-                    int x = it;
-
-                    if (x == 0)
-                        ans = max(ans, v[i]);
-                    else
-                        ans = max(ans, v[i] - v[x - 1]);
-                }
-            }
-            if (mp.find(nums[i] - k) != mp.end()) {
-                for (auto it : mp[nums[i] - k]) {
-                    int x = it;
-
-                    if (x == 0)
-                        ans = max(ans, v[i]);
-                    else
-                        ans = max(ans, v[i] - v[x - 1]);
-                }
-            }
-
-            mp[nums[i]].push_back(i);
-        }
-        if (ans == LONG_MIN)
-            return 0;
-        return ans;*/
+       
         int n=nums.size();
         unordered_map<long long,long long>mp;
         mp[nums[0]]=0;
