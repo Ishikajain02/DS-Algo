@@ -6,13 +6,17 @@ public:
             pq.push(nums[i]);
         }
         int ans=0;
-        while(pq.size() &&pq.top()<k){
-            long minnum=pq.top();
+        while(pq.size()>=2){
+            long long ele=pq.top();
             pq.pop();
-            long min2 = pq.top();
+            long long ele2=pq.top();
             pq.pop();
-            pq.push(2*minnum + min2);
-            ans++;
+            if(ele<k || ele2<k){
+                long long ans2=(min(ele,ele2)*2)+max(ele,ele2);
+                pq.push(ans2);
+                ans++;
+            }
+            else break;
         }
         return ans;
     }
